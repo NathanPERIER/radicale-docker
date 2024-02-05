@@ -25,5 +25,27 @@ htpasswd -c -B <path> <user>
 
 And then enter the password.
 
-Note that the Docker assumes the passwords are hashed using bcrypt (hence the `-B` in the `htpasswd` command).
+> Note : the container assumes the passwords are hashed using bcrypt (hence the `-B` in the `htpasswd` command)
+
+## Run the container
+
+Here is a simple `docker-compose` example :
+
+```yaml
+version: "3.9"
+services:
+  radicale:
+    image: radicale:latest
+    container_name: radicale
+    ports:
+     - "5232:5232"
+    volumes:
+      # Configuration (remove read-only for the first run)
+      - '/path/to/radicale/conf:/etc/radicale:ro'
+      # TLS certificates
+      - '/path/to/certs:/etc/certs:ro'
+      # Calendar data
+      - '/path/to/radicale/data:/data'
+    user: "1000:1000"
+```
 
