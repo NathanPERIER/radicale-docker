@@ -99,6 +99,11 @@ ${rabbitmq_comment}rabbitmq_topic=${RADICALE_RABBITMQ_TOPIC}
 ${rabbitmq_comment}rabbitmq_queue_type=${RADICALE_RABBITMQ_QUEUE_TYPE}
 
 EOF
+
+	if [[ $? -ne 0 ]]; then
+		echo "Error writing the configuration file (is the filesystem read-only ?)"
+		exit 1
+	fi
 fi
 
 
