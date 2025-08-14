@@ -14,6 +14,7 @@ The path to the configuration file in the container should be `/etc/radicale/con
 - If both `public.crt` and `private.key` are found in `/etc/certs`, TLS encryption will be enabled (with those keys).
 - If the file `/etc/radicale/htpasswd` is found, HTTP authentication will be enabled (see authentication section below).
 - If the file `/etc/radicale/rights` is found, it will be used to set the access rights for the various calendars (see [the rights documentation](https://radicale.org/master.html)).
+- If the `RADICALE_RABBITMQ_ENDPOINT` and `RADICALE_RABBITMQ_TOPIC` environment variables are set, enables the [RabbitMQ hook](https://radicale.org/v3.html#hook-1).
 
 ### Authentication
 
@@ -46,6 +47,11 @@ services:
       - '/path/to/certs:/etc/certs:ro'
       # Calendar data
       - '/path/to/radicale/data:/data'
+    environment:
+      # Enables the RabbitMQ hook (optional)
+      RADICALE_RABBITMQ_ENDPOINT: 'amqp://user:password@localhost:5672/'
+      RADICALE_RABBITMQ_TOPIC: 'topic'
+      RADICALE_RABBITMQ_QUEUE_TYPE: 'classic'
     user: "1000:1000"
 ```
 

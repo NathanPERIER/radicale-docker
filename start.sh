@@ -38,6 +38,18 @@ if [ ! -f "$RADICALE_CONFIG_PATH" ]; then
 		rights_comment='# '
 	fi
 
+	if [ -n RADICALE_RABBITMQ_ENDPOINT ] && [ -n RADICALE_RABBITMQ_TOPIC ]; then
+		hook_type='rabbitmq'
+		rabbitmq_comment=''
+		if [ -n RADICALE_RABBITMQ_QUEUE_TYPE ]; then
+			RADICALE_RABBITMQ_QUEUE_TYPE='classic'
+		fi
+	else
+		hook_type='none'
+		rabbitmq_comment='# '
+		RADICALE_RABBITMQ_QUEUE_TYPE='classic'
+	fi
+
 	cat > "$RADICALE_CONFIG_PATH" << EOF
 [server]
 hosts = 0.0.0.0:5232
@@ -79,6 +91,12 @@ mask_passwords = True
 
 # [headers]
 # Access-Control-Allow-Origin = *
+
+[hook]
+type=${hook_type}
+${rabbitmq_comment}rabbitmq_endpoint=${RADICALE_RABBITMQ_ENDPOINT}
+${rabbitmq_comment}rabbitmq_topic=${RADICALE_RABBITMQ_TOPIC}
+${rabbitmq_comment}rabbitmq_queue_type=${RADICALE_RABBITMQ_QUEUE_TYPE}
 
 EOF
 fi
