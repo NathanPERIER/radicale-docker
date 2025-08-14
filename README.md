@@ -26,7 +26,10 @@ htpasswd -c -B <path> <user>
 
 And then enter the password.
 
-> Note : the container assumes the passwords are hashed using bcrypt (hence the `-B` in the `htpasswd` command)
+Additional users can be added to the created file by omitting the `-c` option.
+
+> [!NOTE]
+> The container assumes the passwords are hashed using bcrypt (hence the `-B` in the `htpasswd` command).
 
 ## Run the container
 
