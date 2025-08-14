@@ -61,7 +61,7 @@ delay = 1
 realm = Radicale - Password Required
 
 [rights]
-type = owner_only
+type = ${rights_type}
 ${rights_comment}file = ${RADICALE_RIGHTS_PATH}
 
 [storage]
