@@ -58,3 +58,6 @@ services:
     user: "1000:1000"
 ```
 
+> [!NOTE]
+> It is possible to create shared collections by using symlinks, such as described in [the Radicale wiki](https://github.com/Kozea/Radicale/wiki/Sharing-Collections).
+> For this, it is recommended to create a `collection-shared` folder in the directory mapped onto `/data` and to setup rights management (Radicale will store the user collections in `/data/collection-root` inside the container).
