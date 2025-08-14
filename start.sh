@@ -38,10 +38,10 @@ if [ ! -f "$RADICALE_CONFIG_PATH" ]; then
 		rights_comment='# '
 	fi
 
-	if [ -n RADICALE_RABBITMQ_ENDPOINT ] && [ -n RADICALE_RABBITMQ_TOPIC ]; then
+	if [ -n "$RADICALE_RABBITMQ_ENDPOINT" ] && [ -n "$RADICALE_RABBITMQ_TOPIC" ]; then
 		hook_type='rabbitmq'
 		rabbitmq_comment=''
-		if [ -n RADICALE_RABBITMQ_QUEUE_TYPE ]; then
+		if [ -n "$RADICALE_RABBITMQ_QUEUE_TYPE" ]; then
 			RADICALE_RABBITMQ_QUEUE_TYPE='classic'
 		fi
 	else
