@@ -74,7 +74,7 @@ max_sync_token_age = 2592000
 type = internal
 
 [logging]
-level = warning
+level = info
 mask_passwords = True
 
 # [headers]
